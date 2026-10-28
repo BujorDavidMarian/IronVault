@@ -1,38 +1,34 @@
 import { useParams, useSearchParams } from 'react-router';
-import { getProducts } from '../api/products';
+import { getCategories, getProducts } from '../api/products';
 import { useAsync } from '../hooks/useAsync';
-import { formatPrice } from '../lib/format';
+import PageHeading from '../components/PageHeading';
+import ProductResults from '../components/ProductResults';
+import NotFoundPage from './NotFoundPage';
 
+// Serves both "/" (all products) and "/category/:slug".
 export default function CatalogPage() {
     const { slug } = useParams();
     const [params] = useSearchParams();
     const page = Number(params.get('page')) || 1;
 
-    const { data, loading } = useAsync(`products:${slug ?? 'all'}:${page}`, () =>
+    const categories = useAsync('categories', getCategories);
+    const products = useAsync(`products:${slug ?? 'all'}:${page}`, () =>
         getProducts({ category: slug, page }),
     );
 
+    // "/category/treadmills" doesn't exist → show 404 instead of an empty page.
+    const category = categories.data?.find((c) => c.slug === slug);
+    if (slug && categories.data && !category) return <NotFoundPage />;
+
+    const title = slug ? (category?.name ?? '') : 'All products';
+
     return (
         <>
-            <h1 className="font-display text-4xl font-bold uppercase">
-                {slug ? `Category: ${slug}` : 'All products'}
-            </h1>
-            {!data ? (
-                <p className="mt-6 text-muted">Loading…</p>
-            ) : (
-                <>
-                    <p className="mt-2 text-muted">
-                        {data.totalItems} products · page {data.page} of {data.totalPages}
-                    </p>
-                    <ul className={`mt-6 space-y-1 ${loading ? 'opacity-50' : ''}`}>
-                        {data.items.map((p) => (
-                            <li key={p.id}>
-                                {p.name} — {formatPrice(p.priceCents)}
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            )}
+            <PageHeading title={title} count={products.data?.totalItems} />
+            <ProductResults
+                state={products}
+                empty={<p className="py-16 text-center text-muted">No products here yet.</p>}
+            />
         </>
     );
 }
