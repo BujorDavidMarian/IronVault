@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router';
 import CategoryNav from './CategoryNav';
 import SearchBox from './SearchBox';
+import CartButton from './CartButton';
+import CartDrawer from './CartDrawer';
 
 // When you go to another page (or page 2), jump back to the top.
 function ScrollToTopOnPageChange() {
@@ -18,11 +20,14 @@ export default function Layout() {
         <div className="flex min-h-dvh flex-col">
             <ScrollToTopOnPageChange />
             <header className="sticky top-0 z-10 border-b border-line bg-paper/95 backdrop-blur">
-                <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 pt-3">
+                <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 pt-3">
                     <Link to="/" className="shrink-0 font-display text-2xl font-bold uppercase tracking-wide">
                         Iron<span className="text-accent">Vault</span>
                     </Link>
-                    <SearchBox />
+                    <div className="flex-1">
+                        <SearchBox />
+                    </div>
+                    <CartButton />
                 </div>
                 <CategoryNav />
             </header>
@@ -34,6 +39,8 @@ export default function Layout() {
             <footer className="border-t border-line py-6 text-center text-xs text-muted">
                 © 2026 IronVault
             </footer>
+
+            <CartDrawer />
         </div>
     );
 }
