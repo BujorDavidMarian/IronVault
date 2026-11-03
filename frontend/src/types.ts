@@ -30,3 +30,20 @@ export type Paged<T> = {
     totalPages: number;
     totalItems: number;
 };
+
+export type CartItem = {
+    productId: number;
+    slug: string;
+    name: string;
+    priceCents: number;
+    stock: number;
+    highlight: string;
+    categorySlug: string;
+    quantity: number;
+};
+
+export type Cart = {
+    items: CartItem[];
+    itemCount: number;
+    subtotalCents: number;
+};
