@@ -47,3 +47,27 @@ export type Cart = {
     itemCount: number;
     subtotalCents: number;
 };
+
+export type DeliveryAddress = {
+    id: string;
+    fullName: string;
+    phone: string;
+    street: string;
+    city: string;
+    county: string;     // Județ (e.g., Cluj, București, Timiș)
+    postalCode: string;
+    isDefault: boolean;
+};
+
+export type User = {
+    id: string;
+    email: string;
+    name: string;
+    addresses: DeliveryAddress[];
+    createdAt: string;
+};
+
+export type AuthResponse = {
+    user: User;
+    token: string;
+};

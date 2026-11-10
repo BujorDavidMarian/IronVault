@@ -19,7 +19,7 @@
 | **A1** | Product Catalog | Gabriel | ✅ Finalizat | Grid paginat (≤24 produse/pagină), categorii dedicate, pagină detaliată de produs, tratare 404. |
 | **A2** | Basic Search | Gabriel | ✅ Finalizat | Căutare în timp real după denumire, filtrare fără reîncărcare de pagină, stare curată pentru căutări fără rezultate. |
 | **A3** | Shopping Cart | David / Gabriel | ✅ Finalizat | Drawer lateral glisant (slide-out cart), badge cantitate în antet, adăugare din pagina de produs, ajustare cantitate/ștergere, validare și limitare strictă la stocul disponibil, persistență locală și pregătire integrare API. |
-| **A4** | User Accounts | David | ⏳ În plan | Înregistrare & autentificare, hash parole (Argon2/bcrypt), salvare profil și adrese. |
+| **A4** | User Accounts | David | ✅ Finalizat | Înregistrare & autentificare, hash parole (Argon2/bcrypt), salvare profil și model adrese de livrare multiple cu adresă principală. |
 | **A5** | Checkout Flow | Gabriel | ⏳ În plan | Wizard comandă în mai mulți pași (date livrare, opțiuni curierat, sumar). |
 | **A6** | Sandbox Payment | David | ⏳ În plan | Integrare Stripe Checkout, verificare semnătură webhook, actualizare stare comandă. |
 | **A7** | Stock Management | David | ⏳ În plan | Decrementare atomică stoc la plată, restaurare la anulare, blocare la nivel de rând (SELECT FOR UPDATE). |
