@@ -4,6 +4,7 @@ import CategoryNav from './CategoryNav';
 import SearchBox from './SearchBox';
 import CartButton from './CartButton';
 import CartDrawer from './CartDrawer';
+import UserNav from './UserNav';
 
 // When you go to another page (or page 2), jump back to the top.
 function ScrollToTopOnPageChange() {
@@ -27,6 +28,7 @@ export default function Layout() {
                     <div className="flex-1">
                         <SearchBox />
                     </div>
+                    <UserNav />
                     <CartButton />
                 </div>
                 <CategoryNav />
