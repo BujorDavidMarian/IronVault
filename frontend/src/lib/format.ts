@@ -7,3 +7,7 @@ export function formatPrice(cents: number) {
 export function formatAddress(a: { street: string; city: string; county: string }) {
     return `${a.street}, ${a.city}, jud. ${a.county}`;
 }
+
+export function shippingPriceLabel(costCents: number) {
+    return costCents === 0 ? 'Gratuit' : formatPrice(costCents);
+}

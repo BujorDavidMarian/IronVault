@@ -10,6 +10,7 @@ import AccountPage from './pages/AccountPage';
 import { CartProvider } from './context/CartProvider';
 import { AuthProvider } from './context/AuthProvider';
 import CheckoutPage from './pages/CheckoutPage';
+import OrderPage from './pages/OrderPage';
 
 export default function App() {
     return (
@@ -25,6 +26,7 @@ export default function App() {
                         <Route path="register" element={<RegisterPage />} />
                         <Route path="account" element={<AccountPage />} />
                         <Route path="checkout" element={<CheckoutPage />} />
+                        <Route path="order/:id" element={<OrderPage />} />
                         <Route path="*" element={<NotFoundPage />} />
                     </Route>
                 </Routes>
