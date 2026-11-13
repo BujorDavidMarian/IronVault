@@ -71,3 +71,37 @@ export type AuthResponse = {
     user: User;
     token: string;
 };
+
+export type OrderStatus = 'unpaid' | 'paid' | 'shipped' | 'delivered' | 'cancelled';
+
+export type OrderItem = {
+    productId: number;
+    slug: string;
+    name: string;
+    highlight: string;
+    categorySlug: string;
+    priceCents: number;
+    quantity: number;
+};
+
+export type Order = {
+    id: string;
+    userId: string;
+    createdAt: string;
+    status: OrderStatus;
+    items: OrderItem[];
+    address: Omit<DeliveryAddress, 'id' | 'isDefault'>;
+    shippingMethod: ShippingMethodId;
+    subtotalCents: number;
+    shippingCents: number;
+    totalCents: number;
+};
+
+export type ShippingMethodId = 'standard' | 'express';
+
+export type ShippingMethod = {
+    id: ShippingMethodId;
+    name: string;
+    eta: string;
+    costCents: number;
+};
