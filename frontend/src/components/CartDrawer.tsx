@@ -206,15 +206,13 @@ export default function CartDrawer() {
                             Costul de transport se calculează la checkout.
                         </p>
                         <div className="mt-4 flex flex-col gap-2">
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    alert('Modulul de Checkout (A5) este în lucru conform planului săptămâna 8.');
-                                }}
+                            <Link
+                                to="/checkout"
+                                onClick={closeCart}
                                 className="w-full rounded bg-accent py-3 text-center text-sm font-semibold uppercase tracking-wider text-white hover:bg-accent/90 transition-colors shadow-xs"
                             >
                                 Finalizează comanda
-                            </button>
+                            </Link>
                             <button
                                 type="button"
                                 onClick={closeCart}

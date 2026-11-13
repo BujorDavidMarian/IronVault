@@ -1,10 +1,14 @@
 import { useState, type FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate, useSearchParams } from 'react-router';
 import { useAuth } from '../hooks/useAuth';
 
 export default function LoginPage() {
     const { login } = useAuth();
     const navigate = useNavigate();
+    const [params] = useSearchParams();
+    // Where to go after logging in, e.g. ?next=/checkout. Only paths inside the store are allowed.
+    const next = params.get('next');
+    const destination = next?.startsWith('/') && !next.startsWith('//') ? next : '/account';
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,7 +22,7 @@ export default function LoginPage() {
 
         try {
             await login(email, password);
-            navigate('/account');
+            navigate(destination, { replace: true });
         } catch (err: unknown) {
             setError(err instanceof Error ? err.message : 'Autentificarea a eșuat.');
         } finally {
